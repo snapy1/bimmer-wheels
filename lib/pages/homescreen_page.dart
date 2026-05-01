@@ -18,9 +18,10 @@ class _HomescreenPageState extends State<HomescreenPage> {
 
   Widget _buildMStripeBanner(BuildContext context) {
     final bannerHeight = screenHeight(context);
-    final stripeWidth = screenWidth(context) * 0.365;
-    final stripeHeight = bannerHeight * 1.55;
-    final horizontalBannerOffset = -100.0;
+    final bannerWidth = screenWidth(context);
+    final stripeWidth = bannerWidth * 0.365;
+    final stripeHeight = bannerHeight * 3.0;
+    final horizontalBannerOffset = -bannerWidth * 0.38;
     // final stripeHeight = bannerHeight * 2;
 
     return SizedBox(
@@ -30,33 +31,41 @@ class _HomescreenPageState extends State<HomescreenPage> {
           child: Transform.translate(
             offset: Offset(horizontalBannerOffset, 0),
             child: SizedBox(
-              width: screenWidth(context),
-              height: screenHeight(context),
-              child: Stack(
+              width: bannerWidth,
+              height: bannerHeight,
+              child: OverflowBox(
+                minWidth: bannerWidth,
+                maxWidth: bannerWidth,
+                minHeight: stripeHeight,
+                maxHeight: stripeHeight,
                 alignment: Alignment.center,
-                children: [
-                  _buildStripe(
-                    color: Colors.blue,
-                    width: stripeWidth,
-                    height: stripeHeight,
-                    horizontalOffset: -stripeWidth,
-                    degrees: 20,
-                  ),
-                  _buildStripe(
-                    color: Colors.purple,
-                    width: stripeWidth,
-                    height: stripeHeight,
-                    horizontalOffset: 0,
-                    degrees: 20,
-                  ),
-                  _buildStripe(
-                    color: Colors.red,
-                    width: stripeWidth,
-                    height: stripeHeight,
-                    horizontalOffset: stripeWidth,
-                    degrees: 20,
-                  ),
-                ],
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
+                  children: [
+                    _buildStripe(
+                      color: Colors.blue,
+                      width: stripeWidth,
+                      height: stripeHeight,
+                      horizontalOffset: -stripeWidth,
+                      degrees: 20,
+                    ),
+                    _buildStripe(
+                      color: Colors.purple,
+                      width: stripeWidth,
+                      height: stripeHeight,
+                      horizontalOffset: 0,
+                      degrees: 20,
+                    ),
+                    _buildStripe(
+                      color: Colors.red,
+                      width: stripeWidth,
+                      height: stripeHeight,
+                      horizontalOffset: stripeWidth,
+                      degrees: 20,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
