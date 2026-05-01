@@ -1,0 +1,6 @@
+{
+    "new_user" : true,
+    "model" : "yolo12n",
+    "unit": "metric",
+    "share_data":true
+}
