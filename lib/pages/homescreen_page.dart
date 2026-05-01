@@ -18,10 +18,11 @@ class _HomescreenPageState extends State<HomescreenPage> {
 
   Widget _buildMStripeBanner(BuildContext context) {
     final bannerHeight = screenHeight(context);
-    final bannerWidth = screenWidth(context);
-    final stripeWidth = bannerWidth * 0.365;
+    final bannerWidthFraction = 0.6; // percentage of screen width
+    final bannerWidth = screenWidth(context) ;
+    final stripeWidth = bannerWidth * 0.4;
     final stripeHeight = bannerHeight * 3.0;
-    final horizontalBannerOffset = -bannerWidth * 0.38;
+    final horizontalBannerOffset = -bannerWidth * 0.28;
     // final stripeHeight = bannerHeight * 2;
 
     return SizedBox(
