@@ -20,10 +20,21 @@ class AppSettings {
   /// with default data from the provided asset path.
   static Future<bool> ensureSettingsExists() async {
     final file = await getFile("settings.json");
-    if (!await file.exists()) return false;
-    if (!await validateSettings()) {
-      await file.delete();
-      throw Exception('Settings file is invalid. It has been deleted and will be recreated with default settings on next app launch.');
+    if (!await file.exists()) {
+      await createSettings();
+      return true;
+    }
+
+    try {
+      if (!await validateSettings()) {
+        await file.delete();
+        await createSettings();
+      }
+    } catch (_) {
+      if (await file.exists()) {
+        await file.delete();
+      }
+      await createSettings();
     }
 
     return true;
